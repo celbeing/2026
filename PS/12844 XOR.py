@@ -1,25 +1,26 @@
 import sys
+sys.setrecursionlimit(200000)
 input = sys.stdin.readline
 
 n = int(input())
 seg = [0] * n * 4
 lazy = [0] * n * 4
-arr = list(map(int, input().split()))
+a = list(map(int, input().split()))
 
-def init_tree(node, start, end):
+def init_tree(arr, node, start, end):
     if start == end:
         seg[node] = arr[start-1]
         return
 
     mid = (start + end) // 2
-    init_tree(node*2, start, mid)
-    init_tree(node*2+1, mid+1, end)
+    init_tree(arr, node*2, start, mid)
+    init_tree(arr, node*2+1, mid+1, end)
 
     seg[node] = seg[node*2] ^ seg[node*2+1]
     return
 
 def query(node, start, end, left, right):
-    push(node, start, end)
+    if lazy[node]: push(node, start, end)
     if end < left or right < start:
         return 0
 
@@ -27,17 +28,15 @@ def query(node, start, end, left, right):
         return seg[node]
 
     mid = (start + end) // 2
-    ret = query(node*2, start, mid, left, right) ^ query(node*2+1, mid+1, end, left, right)
-    seg[node] = seg[node*2] ^ seg[node*2+1]
-    return ret
+    return query(node*2, start, mid, left, right) ^ query(node*2+1, mid+1, end, left, right)
 
 def update(node, start, end, left, right, k):
-    push(node, start, end)
+    if lazy[node]: push(node, start, end)
     if end < left or right < start:
         return
 
     if left <= start and end <= right:
-        if (end - start + 1) % 2:
+        if (end - start + 1) & 1:
             seg[node] ^= k
         if start < end:
             lazy[node*2] ^= k
@@ -52,18 +51,17 @@ def update(node, start, end, left, right, k):
     return
 
 def push(node, start, end):
-    if lazy[node] != 0:
-        leaf = end - start + 1
-        if leaf % 2:
-            seg[node] ^= lazy[node]
+    if (end - start + 1) & 1:
+        seg[node] ^= lazy[node]
 
-        if start < end:
-            lazy[node*2] ^= lazy[node]
-            lazy[node*2+1] ^= lazy[node]
-        lazy[node] = 0
+    if start < end:
+        lazy[node*2] ^= lazy[node]
+        lazy[node*2+1] ^= lazy[node]
+
+    lazy[node] = 0
     return
 
-init_tree(1, 1, n)
+init_tree(a, 1, 1, n)
 for _ in range(int(input())):
     q = list(map(int, input().split()))
     if q[0] == 1:
