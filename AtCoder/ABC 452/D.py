@@ -10,7 +10,6 @@ res = 0
 
 for i in s:
     for j in range(n-1,0,-1):
-        now = 0
         if i == t[j+1]:
             dp[j] = 0
         if i == t[j]:
