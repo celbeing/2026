@@ -65,20 +65,19 @@ def delete_sq(node):
     if node >= size:
         count_seg[node] = 0
         node >>= 1
-    while node:
+    while node and cover_seg[node] == 0:
         count_seg[node] = count_seg[node*2]+count_seg[node*2+1]
         node >>= 1
 
 def create_dq(node):
     count_seg[node] = total_seg[node]
     node >>= 1
-    while node:
+    while node and cover_seg[node] == 0:
         count_seg[node] = count_seg[node*2]+count_seg[node*2+1]
         node >>= 1
 
 last = 0
 result = 0
-# lines에서 선분 하나씩 불러오고 counter에 갱신
 for x, w, y1, y2 in lines:
     result += count_seg[1] * (x-last)
     cover_update(y1,y2,w)
