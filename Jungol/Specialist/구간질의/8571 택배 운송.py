@@ -38,7 +38,11 @@ while idx > 1:
         if not(nxt in stem or nxt != parent[idx]):
             bfs.append(nxt)
             while bfs:
-                
+                pass
+                # 대충 줄기가 아닌 지점들을 쭉 탐색해서
+                # 줄기까지의 거리를 기록해두기
+                # 나중에 로봇이 배치되면 줄기에 닿는지 확인하고,
+                # 줄기에서 어느 범위를 커버할 수 있는지 O(1) 내에 확인할 수 있도록
 
 
 
