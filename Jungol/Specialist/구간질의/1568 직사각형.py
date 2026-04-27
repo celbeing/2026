@@ -1,3 +1,5 @@
+# segtree, sweeping
+
 import sys
 input = sys.stdin.readline
 
