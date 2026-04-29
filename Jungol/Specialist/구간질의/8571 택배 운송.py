@@ -29,10 +29,9 @@ while bfs:
 
 stem.add(n)
 idx = n
-while idx > 1:
-    idx = parent[idx]
-    stem.add(idx)
-    branch_from[idx] = dist_from_1[idx]
+branch_from[n] = dist_from_1[n]
+parent[1] = 0
+while idx > 0:
     for nxt in road[idx]:
         if not(nxt in stem or nxt == parent[idx]):
             bfs.append(nxt)
@@ -44,8 +43,15 @@ while idx > 1:
                     if nxt_brn in stem or branch_length[nxt_brn] > 0: continue
                     branch_length[nxt_brn] = branch_length[now] + road[now][nxt_brn]
                     branch_from[nxt_brn] = branch_from[now]
+                    bfs.append(nxt_brn)
+
+    idx = parent[idx]
+    stem.add(idx)
+    branch_from[idx] = dist_from_1[idx]
 
 point_set = set()
+point_set.add(0)
+point_set.add(dist_from_1[n])
 robot = []
 for i in range(1,q+1):
     query = list(map(int, input().split()))
@@ -69,7 +75,7 @@ coor = dict()
 for i, point in enumerate(sorted(list(point_set))):
     coor[point] = i
 
-l = len(point_set)
+l = len(point_set)-1
 size = 1
 while size < l:
     size <<= 1
@@ -77,40 +83,60 @@ while size < l:
 cover_seg = [1] * size * 2
 count_seg = [0] * size * 2
 
-for i in range(1,size+l):
-    cover_seg[i] = 0
+for i in range(l):
+    cover_seg[size+i] = 0
+for i in range(size-1,0,-1):
+    cover_seg[i] = 1 if cover_seg[i*2] & cover_seg[i*2+1] else 0
 
-def update(node):
-    if count_seg[node]:
+def add_robot(node):
+    node >>= 1
+    while node and cover_seg[node*2] & cover_seg[node*2+1]:
         cover_seg[node] = 1
         node >>= 1
-        while node:
-            if cover_seg[node*2] == cover_seg[node*2+1] == 1:
-                cover_seg[node] = 1
-                node >>= 1
-            else:
-                cover_seg[node] = 0
-                break
-    else:
-        while node:
+
+def remove_robot(node):
+    if count_seg[node] == 0:
+        if node >= size:
+            cover_seg[node] = 0
+            node >>= 1
+        while node and count_seg[node] == 0 and not(cover_seg[node*2] & cover_seg[node*2+1]):
             cover_seg[node] = 0
             node >>= 1
 
 for w, i, j in robot:
-    i, j = coor[i]+size, coor[j]+size
-    while i < j:
-        if i & 1:
-            count_seg[i] += w
-            update(i)
-            i += 1
-        i >>= 1
-        if not(j & 1):
-            count_seg[j] += w
-            update(j)
-            j -= 1
-        j >>= 1
-    if i == j:
-        count_seg[i] += w
-        update(i)
+    i, j = coor[i]+size, coor[j]+size-1
+    if w == 1:
+        while i < j:
+            if i & 1:
+                count_seg[i] += 1
+                cover_seg[i] = 1
+                add_robot(i)
+                i += 1
+            i >>= 1
+            if not(j & 1):
+                count_seg[j] += 1
+                cover_seg[j] = 1
+                add_robot(j)
+                j -= 1
+            j >>= 1
+        if i == j:
+            count_seg[i] += 1
+            cover_seg[i] = 1
+            add_robot(i)
+    else:
+        while i < j:
+            if i & 1:
+                count_seg[i] -= 1
+                remove_robot(i)
+                i += 1
+            i >>= 1
+            if not(j & 1):
+                count_seg[j] -= 1
+                remove_robot(j)
+                j -= 1
+            j >>= 1
+        if i == j:
+            count_seg[i] -= 1
+            remove_robot(i)
 
     print('YES' if cover_seg[1] else 'NO')
