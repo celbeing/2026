@@ -1,0 +1,62 @@
+{
+  "version": 4,
+  "id": "1004",
+  "title": "A\u00F7B (2)",
+  "authorName": "\uAE40\uBA85\uC11C",
+  "source": "\uD30C\uC774\uC36C \uAE30\uCD08",
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 128,
+  "statementFormat": "markdown-latex",
+  "description": "\uB450 \uC218\uC758 \uB098\uB217\uC148\uC744 \uD558\uB294 \uD504\uB85C\uADF8\uB7A8\uC744 \uB9CC\uB4E4\uC5B4\uBCF4\uC790.\r\n\uB450 \uC218 $A$\uC640 $B$\uAC00 \uC8FC\uC5B4\uC84C\uC744 \uB54C $A\u00F7B$\uC758 \uACB0\uACFC\uB97C \uCD9C\uB825\uD558\uB77C.",
+  "inputFormat": "\uCCAB\uC9F8 \uC904\uC5D0 \uC815\uC218 $A (0 \\leq A \\leq 100,000,000)$\uAC00 \uC8FC\uC5B4\uC9C4\uB2E4.\r\n\uB458\uC9F8 \uC904\uC5D0 \uC815\uC218 $B (1 \\leq B \\leq A)$\uAC00 \uC8FC\uC5B4\uC9C4\uB2E4.",
+  "outputFormat": "\uCCAB\uC9F8 \uC904\uC5D0 $A\u00F7B$\uC758 \uACB0\uACFC\uB97C \uCD9C\uB825\uD55C\uB2E4.\r\n\uB2E8, \uCD9C\uB825 \uD615\uC2DD\uC740 \uD30C\uC774\uC36C\uC758 \u0060float\u0060 \uC790\uB8CC\uD615\uC73C\uB85C \uD558\uC5EC \uADF8\uB300\uB85C \uCD9C\uB825\uD55C\uB2E4.",
+  "assets": [],
+  "samples": [
+    {
+      "input": "13\r\n7",
+      "output": "1.8571428571428572"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "78537411\r\n754288\r\n",
+      "output": "104.12125209469062\r\n"
+    },
+    {
+      "input": "22101576\r\n19889824\r\n",
+      "output": "1.1112001795491\r\n"
+    },
+    {
+      "input": "14210457\r\n3508\r\n",
+      "output": "4050.8714367160774\r\n"
+    },
+    {
+      "input": "76653784\r\n571551\r\n",
+      "output": "134.11538777816853\r\n"
+    },
+    {
+      "input": "79657988\r\n144802\r\n",
+      "output": "550.1166282233671\r\n"
+    },
+    {
+      "input": "23271804\r\n75964\r\n",
+      "output": "306.3530619767258\r\n"
+    },
+    {
+      "input": "90832536\r\n69005485\r\n",
+      "output": "1.3163089281960703\r\n"
+    },
+    {
+      "input": "92283923\r\n39862401\r\n",
+      "output": "2.315061829818028\r\n"
+    },
+    {
+      "input": "87589772\r\n32943691\r\n",
+      "output": "2.6587722668962623\r\n"
+    },
+    {
+      "input": "5711855\r\n3230715\r\n",
+      "output": "1.767984795935265\r\n"
+    }
+  ]
+}

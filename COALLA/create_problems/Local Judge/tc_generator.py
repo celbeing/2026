@@ -1,7 +1,7 @@
 import random
 random.random()
 check = set()
-path = r"C:\Users\kimsd\Documents\2026\COALLA\\"
+path = r"C:\Users\kimsd\Documents\2026\COALLA\create_problems\Local Judge\문제번호\\"
 
 for tc in range(1, 51):
     file = open(path + f'{tc}.in', 'w+', encoding='utf-8')
