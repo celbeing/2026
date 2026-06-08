@@ -20,7 +20,7 @@ def solution():
 
     s, e = max(a), sum(a)
     result = e
-    while s < e:
+    while s <= e:
         m = (s+e)//2
         if check(m):
             result = m
@@ -28,16 +28,25 @@ def solution():
         else:
             s = m + 1
 
-    # k명의 서기공이 모두 일을 해야 함
-    # 출력 구분 수가 k보다 작은 경우 있음
     answer = []
     count = 0
-    for p in a:
+    k -= 1
+    for p in reversed(a):
         if count + p > result:
             answer.append('/')
             count = 0
+            k -= 1
         answer.append(str(p))
         count += p
+    answer.reverse()
+    idx = 0
+    while k:
+        if answer[idx] != '/' and answer[idx+1] != '/':
+            idx += 1
+            answer.insert(idx, '/')
+            k -= 1
+        idx += 1
+
     print(' '.join(answer))
 
 solution()
