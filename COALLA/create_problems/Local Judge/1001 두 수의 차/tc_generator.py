@@ -1,7 +1,7 @@
 import random
 random.random()
 check = set()
-path = r"C:\Users\kimsd\Documents\2026\COALLA\create_problems\Local Judge\1001\\"
+path = r"/COALLA/create_problems/Local Judge/1001 두 수의 차\\"
 
 for tc in range(1, 11):
     file = open(path + f'{tc}.in', 'w+', encoding='utf-8')

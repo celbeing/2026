@@ -1,1 +1,1 @@
-print(13/7)
+print(ord('z'))
