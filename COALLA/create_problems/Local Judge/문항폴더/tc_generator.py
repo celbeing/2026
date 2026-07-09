@@ -1,15 +1,11 @@
-import random
-random.random()
+from random import random, randint
 check = set()
 path = r"C:\Users\kimsd\Documents\2026\COALLA\create_problems\Local Judge\문제번호\\"
 
-for tc in range(1, 51):
+for tc in range(1, 21):
     file = open(path + f'{tc}.in', 'w+', encoding='utf-8')
-    a, b, c = random.randint(-100000000,100000000), random.randint(1,100000000), random.randint(1,100000000)
-    while (a, b, c) in check:
-        a, b, c = random.randint(-100000000, 100000000), random.randint(1, 100000000), random.randint(1, 100000000)
-    check.add((a, b, c))
-    w = file.writelines(f'{a}\n{b}\n{c}\n')
+    a = randint(100)
+    w = file.writelines(f'{a}\n')
 
     file = open(path + f'{tc}.out', 'w+', encoding = 'utf-8')
-    w = file.writelines(f'{a+b+c}\n')
+    w = file.writelines(f'{a}\n')
