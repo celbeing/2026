@@ -1,6 +1,6 @@
 from random import randint
 
-path = r"C:\Users\kimsd\Documents\2026\COALLA\create_problems\Local Judge\1030 좌석 요금\\"
+path = r"/COALLA/create_problems/Local Judge/1030 항공권\\"
 
 for tc in range(1, 21):
     fst = randint(100, 200) * 10000

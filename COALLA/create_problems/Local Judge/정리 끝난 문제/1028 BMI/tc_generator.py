@@ -41,7 +41,7 @@ for tc in range(1, 21):
     file = open(path + f'{tc}.in', 'w+', encoding='utf-8')
     bmi = num.pop()
     h = randint(1400, 2000)/10
-    t = int(bmi*((h/100)**2))/10
+    t = int(bmi*((h/100)**2)*10)/10
 
     w = file.writelines(f'{h} {t}\n')
 

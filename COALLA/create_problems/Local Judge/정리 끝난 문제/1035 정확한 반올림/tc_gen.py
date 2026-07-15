@@ -14,18 +14,9 @@ from pathlib import Path
 # 1: {N을 소수점 아래 두 번째 자리까지 반올림하여 나타낸 수}\n
 
 # 조건
-# -100,000 <= N <= 100,000
+# 0 <= N <= 100,000
 # N은 소수점 아래 6자리까지 표현됨
 CASES = [
-    "-100000",
-    "-99999.995000",
-    "-12345.555555",
-    "-100.005000",
-    "-12.345600",
-    "-2.675000",
-    "-1.235000",
-    "-0.005000",
-    "-0.004900",
     "0",
     "0.004900",
     "0.005000",
@@ -50,8 +41,8 @@ def round_to_second_place(raw: str) -> str:
 def main() -> None:
     path = Path(__file__).resolve().parent
 
-    if len(CASES) != 20:
-        raise ValueError("테스트케이스는 기본 20개로 구성합니다.")
+    if len(CASES) != 11:
+        raise ValueError("테스트케이스는 기본 11개로 구성합니다.")
 
     check = set()
     for tc, raw in enumerate(CASES, 1):

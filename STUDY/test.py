@@ -1,6 +1,6 @@
-n = int(input())
-def star(k):
-    if k > n: return
-    print('*'*k)
-    star(k+1)
-star(1)
+a = float(input())
+a *= 100
+a += 0.5
+a = int(a)
+a /= 100
+print(f"{a:.2f}")
