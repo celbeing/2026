@@ -1,4 +1,7 @@
+import sys
 from bisect import bisect_left
+
+input = sys.stdin.readline
 
 def solution():
     n = int(input())
@@ -25,10 +28,12 @@ def solution():
             res = max(res, fw[k])
             k -= k&-k
         return res
-
+    ans = 0
     for l, r in animal:
         idx = n - bisect_left(left, l)
-        fw_update(idx, fw_query(idx)+1)
+        res = fw_query(idx)+1
+        fw_update(idx, res)
+        ans = max(ans, res)
 
-    print(fw_query(n))
+    print(ans)
 solution()
