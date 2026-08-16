@@ -78,3 +78,51 @@ class Node:
 
         new_node.splay()
         return new_node
+
+    def find(self, value):
+        now = self
+        while now is not None:
+            if value == now.key:
+                now.splay()
+                return now
+
+            if value < now.key:
+                now = now.left
+            else:
+                now = now.right
+        return None
+
+    def delete(self, value):
+        now = self.find(value)
+        if now is None:
+            return now
+
+        now.splay()
+        left = now.left
+        right = now.right
+
+        if left is not None:
+            left.parent = None
+        if right is not None:
+            right.parent = None
+
+        now.left = None
+        now.right = None
+
+        if left is None:
+            return right
+
+        new_root = left
+
+        while new_root.right is not None:
+            new_root = new_root.right
+
+        new_root.splay()
+
+        new_root.right = right
+
+        if right is not None:
+            right.parent = new_root
+
+        return new_root
+    
