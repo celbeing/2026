@@ -4,6 +4,7 @@ class Node:
         self.parent = None
         self.left = None
         self.right = None
+        self.count = 1
 
     def set_left(self, child):
         self.left = child
@@ -41,6 +42,9 @@ class Node:
             else:
                 g.right = x
         p.parent = x
+
+        p.update()
+        x.update()
 
     def splay(self):
         while self.parent is not None:
@@ -125,4 +129,30 @@ class Node:
             right.parent = new_root
 
         return new_root
-    
+
+    def update(self):
+        self.count = 1
+        if self.left is not None:
+            self.count += self.left.count
+        if self.right is not None:
+            self.count += self.right.count
+
+    def kth(self, k:int):
+        if k < 1 or k > self.count:
+            return None
+
+        x = self
+
+        while True:
+            l_cnt = x.left.count if x.left is not None else 0
+
+            if k <= l_cnt:
+                x = x.left
+            elif k == l_cnt + 1:
+                x.splay()
+                return x
+            else:
+                k -= l_cnt + 1
+                x = x.right
+
+        return None
