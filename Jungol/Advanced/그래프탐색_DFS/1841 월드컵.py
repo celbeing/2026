@@ -1,54 +1,32 @@
-import sys
-input = sys.stdin.readline
+from itertools import permutations
 
-check = set()
-res = [[0] * 6 for _ in range(6)]
+def solution():
+    a = list(map(int, input().split()))
+    mat = [[0] * 6 for _ in range(6)]
 
-def count():
-    ret = [0] * 18
-    for i in range(6):
-        for j in range(i+1,6):
-            if res[i][j] == 1:
-                ret[i*3] += 1
-                ret[j*3+2] += 1
-            elif res[i][j] == 0:
-                ret[i*3+1] += 1
-                ret[j*3+1] += 1
+    def dfs(x):
+        if x == 6:
+            return 1
+
+        t = a[3*x:3*(x+1)]
+        for i in range(x):
+            if mat[x][i] == 1:
+                t[0] -= 1
+            elif mat[x][i] == 0:
+                t[1] -= 1
             else:
-                ret[i*3+2] += 1
-                ret[j*3] += 1
-    k = 0
-    for a in ret:
-        k *= 10
-        k += a
-    check.add(str(k))
-    return
+                t[2] -= 1
+        if t[0] < 0 or t[1] < 0 or t[2] < 0:
+            return 0
 
-def dfs(i,j):
-    a, b = i, j
-    if b > 5:
-        a += 1
-        b = a+1
-    if a == 5:
-        count()
-        return
+        perm = [1]*t[0] + [0]*t[1] + [-1]*t[2]
+        for p in set(permutations(perm, sum(t))):
+            for y, k in enumerate(p, start=x+1):
+                mat[x][y] = k
+                mat[y][x] = -k
+            return dfs(x+1)
+        return 0
+    print(dfs(0))
 
-    dfs(a,b+1)
-    res[a][b] = 1
-    res[b][a] = -1
-    dfs(a,b+1)
-    res[a][b] = -1
-    res[b][a] = 1
-    dfs(a,b+1)
-    res[a][b] = 0
-    res[b][a] = 0
-    return
 
-dfs(0,0)
-ans = [0]*4
-for i in range(4):
-    a = input().strip().replace(' ','')
-    if a in check:
-        ans[i] = 1
-
-print(*ans)
+solution()
