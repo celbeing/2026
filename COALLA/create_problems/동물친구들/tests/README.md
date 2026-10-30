@@ -1,0 +1,83 @@
+# Test cases
+
+Small cases use a time-expanded graph oracle on the original edges.
+Large cases use the stated star-metric bounds or an explicit feasible tour.
+
+- 1: example 1: waiting; answer 3
+- 2: example 2: revisit and exact deadline; answer 2
+- 3: example 3: cannot return; answer 0
+- 4: no windows, minimum K; answer 0
+- 5: instant window, exact return; answer 1
+- 6: expired before arrival; answer 0
+- 7: waiting until opening; answer 1
+- 8: parallel edges and overlapping unsorted windows; answer 2
+- 9: shortest route via another cage; answer 3
+- 10: repeated sighting counts once; answer 1
+- 11: missing animals; answer 1
+- 12: all windows at time zero; answer 0
+- 13: random small 1: independent oracle; answer 1
+- 14: random small 2: independent oracle; answer 1
+- 15: random small 3: independent oracle; answer 0
+- 16: random small 4: independent oracle; answer 1
+- 17: random small 5: independent oracle; answer 0
+- 18: random small 6: independent oracle; answer 0
+- 19: random small 7: independent oracle; answer 0
+- 20: random small 8: independent oracle; answer 2
+- 21: random small 9: independent oracle; answer 2
+- 22: random small 10: independent oracle; answer 2
+- 23: random small 11: independent oracle; answer 5
+- 24: random small 12: independent oracle; answer 2
+- 25: random small 13: independent oracle; answer 0
+- 26: random small 14: independent oracle; answer 1
+- 27: random small 15: independent oracle; answer 3
+- 28: random small 16: independent oracle; answer 4
+- 29: random small 17: independent oracle; answer 2
+- 30: random small 18: independent oracle; answer 1
+- 31: random small 19: independent oracle; answer 4
+- 32: random small 20: independent oracle; answer 1
+- 33: random small 21: independent oracle; answer 1
+- 34: random small 22: independent oracle; answer 0
+- 35: random small 23: independent oracle; answer 4
+- 36: random small 24: independent oracle; answer 2
+- 37: random small 25: independent oracle; answer 2
+- 38: random small 26: independent oracle; answer 3
+- 39: random small 27: independent oracle; answer 3
+- 40: random small 28: independent oracle; answer 5
+- 41: random small 29: independent oracle; answer 3
+- 42: random small 30: independent oracle; answer 1
+- 43: random small 31: independent oracle; answer 1
+- 44: random small 32: independent oracle; answer 1
+- 45: random small 33: independent oracle; answer 2
+- 46: random small 34: independent oracle; answer 1
+- 47: random small 35: independent oracle; answer 3
+- 48: random small 36: independent oracle; answer 2
+- 49: random small 37: independent oracle; answer 1
+- 50: random small 38: independent oracle; answer 2
+- 51: random small 39: independent oracle; answer 2
+- 52: random small 40: independent oracle; answer 0
+- 53: random small 41: independent oracle; answer 1
+- 54: random small 42: independent oracle; answer 0
+- 55: random small 43: independent oracle; answer 1
+- 56: random small 44: independent oracle; answer 1
+- 57: random small 45: independent oracle; answer 4
+- 58: random small 46: independent oracle; answer 1
+- 59: random small 47: independent oracle; answer 0
+- 60: random small 48: independent oracle; answer 1
+- 61: random small 49: independent oracle; answer 1
+- 62: random small 50: independent oracle; answer 0
+- 63: random small 51: independent oracle; answer 0
+- 64: random small 52: independent oracle; answer 1
+- 65: random small 53: independent oracle; answer 2
+- 66: random small 54: independent oracle; answer 1
+- 67: random small 55: independent oracle; answer 1
+- 68: random small 56: independent oracle; answer 3
+- 69: random small 57: independent oracle; answer 1
+- 70: random small 58: independent oracle; answer 2
+- 71: random small 59: independent oracle; answer 4
+- 72: random small 60: independent oracle; answer 3
+- 73: N maximum, all animals; answer 15
+- 74: N maximum, budget excludes one; answer 14
+- 75: L M maximum, disjoint windows, large K; answer 15
+- 76: large weights and unavailable return; answer 0
+- 77: M maximum, overlapping and duplicate windows; answer 15
+- 78: simultaneous instant windows: only one animal; answer 1
